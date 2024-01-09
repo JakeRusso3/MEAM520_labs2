@@ -64,7 +64,7 @@ class FK():
         H67 = self.dh_to_matrix(th7-pi/4, l9+l10, 0, 0)
 
         T1 = H01
-        T2 = np.dot(A01, H12)
+        T2 = np.dot(T1, H12)
         T3 = np.dot(T2, H23)
         T4 = np.dot(T3, H34)
         T5 = np.dot(T4, H45)

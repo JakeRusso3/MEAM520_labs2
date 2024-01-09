@@ -87,6 +87,7 @@ if __name__ == "__main__":
         # Try editing the configurations list above to do more testing!
         for i, q in enumerate(configurations):
             print("Moving to configuration " + str(i) + "...")
+            print("Chosen configuration:" + q)
             arm.safe_move_to_position(q)
             if i < len(configurations) - 1:
                 input("Press Enter to move to next configuration...")

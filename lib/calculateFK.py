@@ -55,13 +55,13 @@ class FK():
         th6 = q[5]
         th7 = q[6]
         
-        H01 = dh_to_matrix(th1, l1+l2, 0, -pi/2)
-        H12 = dh_to_matrix(th2, 0, 0, pi/2)
-        H23 = dh_to_matrix(th3, l3+l5, l4, pi/2)
-        H34 = dh_to_matrix(th4 + pi, 0, l4, pi/2)
-        H45 = dh_to_matrix(th5, l6+l7, 0, -pi/2)  
-        H56 = dh_to_matrix(th6 - pi, 0, l8, pi/2)
-        H67 = dh_to_matrix(th7-pi/4, l9+l10, 0, 0)
+        H01 = self.dh_to_matrix(th1, l1+l2, 0, -pi/2)
+        H12 = self.dh_to_matrix(th2, 0, 0, pi/2)
+        H23 = self.dh_to_matrix(th3, l3+l5, l4, pi/2)
+        H34 = self.dh_to_matrix(th4 + pi, 0, l4, pi/2)
+        H45 = self.dh_to_matrix(th5, l6+l7, 0, -pi/2)  
+        H56 = self.dh_to_matrix(th6 - pi, 0, l8, pi/2)
+        H67 = self.dh_to_matrix(th7-pi/4, l9+l10, 0, 0)
 
         T1 = H01
         T2 = np.dot(A01, H12)

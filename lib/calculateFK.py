@@ -78,7 +78,7 @@ class FK():
         P5 = np.dot(T5, np.array([0, l7, 0, 1]))
         P6 = np.dot(T6, np.array([-l8, -l11, 0, 1]))
         P7 = np.dot(T7, np.array([0,0,-l10,1]))
-        P8 = np.dot(T0e, np.array([0,0,0,1]))
+        P8 = np.dot(T7, np.array([0,0,0,1]))
                     
 
         jointPositions = np.array([

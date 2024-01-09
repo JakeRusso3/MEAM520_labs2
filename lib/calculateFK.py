@@ -63,22 +63,22 @@ class FK():
         H56 = self.dh_to_matrix(th6 - pi, 0, l8, pi/2)
         H67 = self.dh_to_matrix(th7-pi/4, l9+l10, 0, 0)
 
-        T1 = H01
-        T2 = np.dot(T1, H12)
-        T3 = np.dot(T2, H23)
-        T4 = np.dot(T3, H34)
-        T5 = np.dot(T4, H45)
-        T6 = np.dot(T5, H56)
-        T7 = np.dot(T6, H67)
+        T01 = H01
+        T02 = np.dot(T1, H12)
+        T03 = np.dot(T2, H23)
+        T04 = np.dot(T3, H34)
+        T05 = np.dot(T4, H45)
+        T06 = np.dot(T5, H56)
+        T07 = np.dot(T6, H67)
         
-        P1 = np.dot(T1, np.array([0,l2,0,1]))
-        P2 = np.dot(T2, np.array([0,0,0,1]))
-        P3 = np.dot(T3, np.array([-l4, -l5, 0, 1]))
-        P4 = np.dot(T4, np.array([-l4, 0, 0, 1]))
-        P5 = np.dot(T5, np.array([0, l7, 0, 1]))
-        P6 = np.dot(T6, np.array([-l8, -l11, 0, 1]))
-        P7 = np.dot(T7, np.array([0,0,-l10,1]))
-        P8 = np.dot(T7, np.array([0,0,0,1]))
+        P1 = np.dot(T01, np.array([0,l2,0,1]))
+        P2 = np.dot(T02, np.array([0,0,0,1]))
+        P3 = np.dot(T03, np.array([-l4, -l5, 0, 1]))
+        P4 = np.dot(T04, np.array([-l4, 0, 0, 1]))
+        P5 = np.dot(T05, np.array([0, l7, 0, 1]))
+        P6 = np.dot(T06, np.array([-l8, -l11, 0, 1]))
+        P7 = np.dot(T07, np.array([0,0,-l10,1]))
+        P8 = np.dot(T07, np.array([0,0,0,1]))
                     
 
         jointPositions = np.array([

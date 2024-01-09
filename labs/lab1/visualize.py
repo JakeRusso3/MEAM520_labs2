@@ -65,9 +65,8 @@ def show_all_FK(state):
 # The first configuration below matches the dimensional drawing in the handout
 configurations = [
     np.array([ 0,    0,     0, -pi/2,     0, pi/2, pi/4 ]),
-    np.array([ pi/2, pi/2,  0, -0.07,     0,    0,    0 ]),
-    np.array([ 0,    0,  2.89, -pi/2,  2.89, pi/2, pi/4 ]),
-    np.array([ 0,    -pi/4, 0,-3*pi/4, 2.89, pi/2, pi/4 ]),
+    np.array([ pi/2, 0,  pi/4, -pi/2, -pi/2, pi/2,    0 ]),
+    np.array([ 0,    0, -pi/2, -pi/4,  pi/2, pi,   pi/4 ]),
 ]
 
 ####################

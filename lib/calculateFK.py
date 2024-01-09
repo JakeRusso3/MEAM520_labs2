@@ -22,7 +22,8 @@ class FK():
         l11 = 0.015
 
         pass
-    def dh_to_transformation(self, th, d, r, al):
+        
+    def dh_to_matrix(self, th, d, r, al):
         return np.array([
             [cos(th), -sin(th)*cos(al), sin(th)*sin(al), r*cos(th)],
             [sin(th), cos(th)*cos(al), -cos(th)*sin(al), r*sin(th)],
@@ -54,13 +55,13 @@ class FK():
         th6 = q[5]
         th7 = q[6]
         
-        H01 = dh_to_transformation(th1, l1+l2, 0, -pi/2)
-        H12 = dh_to_transformation(th2, 0, 0, pi/2)
-        H23 = dh_to_transformation(th3, l3+l5, l4, pi/2)
-        H34 = dh_to_transformation(th4 + pi, 0, l4, pi/2)
-        H45 = dh_to_transformation(th5, l6+l7, 0, -pi/2)  
-        H56 = dh_to_transformation(th6 - pi, 0, l8, pi/2)
-        H67 = dh_to_transformation(th7-pi/4, l9+l10, 0, 0)
+        H01 = dh_to_matrix(th1, l1+l2, 0, -pi/2)
+        H12 = dh_to_matrix(th2, 0, 0, pi/2)
+        H23 = dh_to_matrix(th3, l3+l5, l4, pi/2)
+        H34 = dh_to_matrix(th4 + pi, 0, l4, pi/2)
+        H45 = dh_to_matrix(th5, l6+l7, 0, -pi/2)  
+        H56 = dh_to_matrix(th6 - pi, 0, l8, pi/2)
+        H67 = dh_to_matrix(th7-pi/4, l9+l10, 0, 0)
 
         T1 = H01
         T2 = np.dot(A01, H12)

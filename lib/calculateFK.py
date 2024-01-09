@@ -9,17 +9,6 @@ class FK():
         # TODO: you may want to define geometric parameters here that will be
         # useful in computing the forward kinematics. The data you will need
         # is provided in the lab handout
-        l1 = 0.141
-        l2 = 0.192
-        l3 = 0.195
-        l4 = 0.0825
-        l5 = 0.121
-        l6 = 0.125
-        l7 = 0.259
-        l8 = 0.088
-        l9 = 0.051
-        l10 = 0.159
-        l11 = 0.015
 
         pass
         
@@ -54,6 +43,17 @@ class FK():
         th5 = q[4]
         th6 = q[5]
         th7 = q[6]
+        l1 = 0.141
+        l2 = 0.192
+        l3 = 0.195
+        l4 = 0.0825
+        l5 = 0.121
+        l6 = 0.125
+        l7 = 0.259
+        l8 = 0.088
+        l9 = 0.051
+        l10 = 0.159
+        l11 = 0.015
         
         H01 = self.dh_to_matrix(th1, l1+l2, 0, -pi/2)
         H12 = self.dh_to_matrix(th2, 0, 0, pi/2)

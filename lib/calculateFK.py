@@ -22,6 +22,13 @@ class FK():
         l11 = 0.015
 
         pass
+    def dh_to_transformation(self, th, d, r, al):
+        return np.array([
+            [cos(th), -sin(th)*cos(al), sin(th)*sin(al), r*cos(th)],
+            [sin(th), cos(th)*cos(al), -cos(th)*sin(al), r*sin(th)],
+            [0, sin(al), cos(al), d],
+            [0, 0, 0, 1]
+        ])
     
 
     def forward(self, q):
@@ -93,14 +100,7 @@ class FK():
         return jointPositions, T0e
 
     # feel free to define additional helper methods to modularize your solution for lab 1
-    def dh_to_transformation(self, th, d, r, al):
-        return np.array([
-            [cos(th), -sin(th)*cos(al), sin(th)*sin(al), r*cos(th)],
-            [sin(th), cos(th)*cos(al), -cos(th)*sin(al), r*sin(th)],
-            [0, sin(al), cos(al), d],
-            [0, 0, 0, 1]
-        ])
-    
+
     # This code is for Lab 2, you can ignore it ofr Lab 1
     def get_axis_of_rotation(self, q):
         """

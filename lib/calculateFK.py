@@ -71,13 +71,13 @@ class FK():
         T6 = np.dot(T5, H56)
         T7 = np.dot(T6, H67)
         
-        P1 = np.dot(T_1, np.array([0,l2,0,1]))
-        P2 = np.dot(T_2, np.array([0,0,0,1]))
-        P3 = np.dot(T_3, np.array([-l4, -l5, 0, 1]))
-        P4 = np.dot(T_4, np.array([-l4, 0, 0, 1]))
-        P5 = np.dot(T_5, np.array([0, l7, 0, 1]))
-        P6 = np.dot(T_6, np.array([-l8, -l11, 0, 1]))
-        P7 = np.dot(T_7, np.array([0,0,-l10,1]))
+        P1 = np.dot(T1, np.array([0,l2,0,1]))
+        P2 = np.dot(T2, np.array([0,0,0,1]))
+        P3 = np.dot(T3, np.array([-l4, -l5, 0, 1]))
+        P4 = np.dot(T4, np.array([-l4, 0, 0, 1]))
+        P5 = np.dot(T5, np.array([0, l7, 0, 1]))
+        P6 = np.dot(T6, np.array([-l8, -l11, 0, 1]))
+        P7 = np.dot(T7, np.array([0,0,-l10,1]))
         P8 = np.dot(T0e, np.array([0,0,0,1]))
                     
 

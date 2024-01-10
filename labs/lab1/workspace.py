@@ -1,6 +1,7 @@
 from lib.calculateFK import FK
 from core.interfaces import ArmController
 
+import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -23,6 +24,18 @@ limits = [
 # We've included some very basic plotting commands below, but you can find
 # more functionality at https://matplotlib.org/stable/index.html
 
+num_samples = 1000
+end_positions = []
+sample_angles = []
+this_sample = []
+for ii in num_samples:
+    this_sample = []
+    for jj in limits:
+        this_sample.append(np.random.uniform(ii['lower'], ii['upper'], 1)
+    this_joint, thisT0e = fk.forward(this_sample)
+    end_positions.append(thisT0e[:3,3])
+
+final_end_effector_positions = np.array(end_effector_positions)    
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 

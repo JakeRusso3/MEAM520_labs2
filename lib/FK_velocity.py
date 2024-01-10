@@ -11,7 +11,8 @@ def FK_velocity(q_in, dq):
 
     ## STUDENT CODE GOES HERE
 
-    velocity = np.zeros((6, 1))
-
+    J = calcJacobian(q_in)
+    reshaped_dq = np.array(dq).reshape(7,1)
+    velocity = np.matmul(J, reshaped_dq)
 
     return velocity

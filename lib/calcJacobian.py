@@ -11,24 +11,38 @@ def calcJacobian(q_in):
     """
     fk = FK()
     joint_positions, T0e = fk.forward(q_in)
-    end_eff_position = T0e[:3,3]
-    print(end_eff_position)
-    end_eff_rotation_matrix = T0e [:3,:3]
-    print(end_eff_rotation_matrix)
-    All_T_matrices = fk.get_T(q_in)
-    Rotation_matrices = [T0x[:3,:3] for T0x in All_T_matrices)
-
-    axis_of_rotation = fk.get_axis_of_rotation(q_in)
+    z_axis = np.array([0,0,1])
     
-    finaljp = joint_positions[-1, :]
-    for ii in range(7)
-        for i in range(7):
-        r = np.array(finaljp - joint_positions[ii, :])
-        J[:3, i] = np.cross(axis_of_rotations[:, i], r)
-        J[3:, i] = axis_of_rotations[:, i]
-
+    All_Ts = fk.get_T(q_in)
+    All_Rs = [T[0:3,0:3] for T in All_Ts]
+    
+    Z_end_eff = All_Ts[-1][0:3,3]
+    
+    Jlinear = []
+    Jangular = []
+    
+    Jlinear.append(np.cross(z_axis.T, (Z_end_eff - joint_positions[0])))
+    
+    for ii in range(1,7):
+        Jlinear.append(np.cross(All_Rs[ii-1][0:3,2], (P_end - joint_positions[ii])))
+        
+        
+    JlinearT = np.array(Jlinear).T
+    #print(JlinearT)
+    Jangular = [np.array([0,0,1])]
+    Jangular.extend([np.matmul(R, np.array([0,0,1])) for R in All_Rs[0:6]])
+    JangularT = np.array(Jangular).T
+    #print(JangularT)
+    Jtotal = np.vstack([JlinearT,JangularT])
+    J = Jtotal
     return J
+
 
 if __name__ == '__main__':
     q= np.array([0, 0, 0, -np.pi/2, 0, np.pi/2, np.pi/4])
     print(np.round(calcJacobian(q),3))
+
+if __name__ == '__main__':
+    q= np.array([0, 0, 0, -np.pi/2, 0, np.pi/2, np.pi/4])
+    print(np.round(calcJacobian(q),3))
+    

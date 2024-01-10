@@ -101,7 +101,44 @@ class FK():
         return jointPositions, T0e
 
     # feel free to define additional helper methods to modularize your solution for lab 1
+    def get_T(self, q):
+        th1 = q[0]
+        th2 = q[1]
+        th3 = q[2]
+        th4 = q[3]
+        th5 = q[4]
+        th6 = q[5]
+        th7 = q[6]
+        l1 = 0.141
+        l2 = 0.192
+        l3 = 0.195
+        l4 = 0.0825
+        l5 = 0.121
+        l6 = 0.125
+        l7 = 0.259
+        l8 = 0.088
+        l9 = 0.051
+        l10 = 0.159
+        l11 = 0.015
+        H01 = self.dh_to_matrix(th1, l1+l2, 0, -pi/2)
+        H12 = self.dh_to_matrix(th2, 0, 0, pi/2)
+        H23 = self.dh_to_matrix(th3, l3+l5, l4, pi/2)
+        H34 = self.dh_to_matrix(th4 + pi, 0, l4, pi/2)
+        H45 = self.dh_to_matrix(th5, l6+l7, 0, -pi/2)  
+        H56 = self.dh_to_matrix(th6 - pi, 0, l8, pi/2)
+        H67 = self.dh_to_matrix(th7-pi/4, l9+l10, 0, 0)
 
+        T01 = H01
+        T02 = np.dot(T01, H12)
+        T03 = np.dot(T02, H23)
+        T04 = np.dot(T03, H34)
+        T05 = np.dot(T04, H45)
+        T06 = np.dot(T05, H56)
+        T07 = np.dot(T06, H67)
+
+        All_Ts = [T01,T02,T03,T04,T05,T06,T07]
+        return All_Ts
+        
     # This code is for Lab 2, you can ignore it ofr Lab 1
     def get_axis_of_rotation(self, q):
         """

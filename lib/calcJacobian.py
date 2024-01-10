@@ -16,7 +16,7 @@ def calcJacobian(q_in):
     All_Ts = fk.get_T(q_in)
     All_Rs = [T[0:3,0:3] for T in All_Ts]
     
-    p_end_eff = All_Ts[-1][0:3,3]
+    p_end_eff = T0e[0:3,3]
     
     Jlinear = []
     Jangular = []

@@ -16,16 +16,16 @@ def calcJacobian(q_in):
     All_Ts = fk.get_T(q_in)
     All_Rs = [T[0:3,0:3] for T in All_Ts]
     
-    Z_end_eff = All_Ts[-1][0:3,3]
+    p_end_eff = All_Ts[-1][0:3,3]
     
     Jlinear = []
     Jangular = []
     
-    Jlinear.append(np.cross(z_axis.T, (Z_end_eff - joint_positions[0])))
+    Jlinear.append(np.cross(z_axis.T, (p_end_eff - joint_positions[0])))
 
 
     for ii in range(1,7):
-        Jlinear.append(np.cross(All_Rs[ii-1][0:3,2], (Z_end_eff - joint_positions[ii])))
+        Jlinear.append(np.cross(All_Rs[ii-1][0:3,2], (p_end_eff - joint_positions[ii])))
         
         
     JlinearT = np.array(Jlinear).T

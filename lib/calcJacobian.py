@@ -22,9 +22,10 @@ def calcJacobian(q_in):
     Jangular = []
     
     Jlinear.append(np.cross(z_axis.T, (Z_end_eff - joint_positions[0])))
-    
+
+
     for ii in range(1,7):
-        Jlinear.append(np.cross(All_Rs[ii-1][0:3,2], (P_end - joint_positions[ii])))
+        Jlinear.append(np.cross(All_Rs[ii-1][0:3,2], (Z_end_eff - joint_positions[ii])))
         
         
     JlinearT = np.array(Jlinear).T

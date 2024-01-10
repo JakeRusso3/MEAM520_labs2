@@ -25,7 +25,7 @@ limits = [
 # We've included some very basic plotting commands below, but you can find
 # more functionality at https://matplotlib.org/stable/index.html
 
-num_samples = 1000000
+num_samples = 100000
 end_positions = []
 sample_angles = []
 this_sample = []

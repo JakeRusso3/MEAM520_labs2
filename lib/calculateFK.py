@@ -34,8 +34,6 @@ class FK():
                   representing the end effector frame expressed in the
                   world frame
         """
-
-        # Your Lab 1 code starts here
         th1 = q[0]
         th2 = q[1]
         th3 = q[2]
@@ -150,7 +148,7 @@ class FK():
                                  world frame
 
         """
-        # STUDENT CODE HERE: This is a function needed by lab 2
+
 
         return()
     

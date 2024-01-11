@@ -136,8 +136,8 @@ class JacobianDemo():
                 self.dt = time_in_seconds() - self.last_iteration_time
                 self.last_iteration_time = time_in_seconds()
                 
-                #new_q = q + self.dt * dq
-                new_q = np.atleast_2d(q).T + self.dt * dq
+                new_q = q + self.dt * dq
+                #new_q = np.atleast_2d(q).T + self.dt * dq
 
                 
                 arm.safe_set_joint_positions_velocities(new_q, dq)

@@ -28,5 +28,7 @@ def IK_velocity(q_in, v_in, omega_in):
             targetvmatrix[ii] = 0
             J[ii] = 0
     dq = np.linalg.lstsq(J,targetvmatrix, rcond = None)[0].T
+
+    dq = dq.reshape(7,)
     
     return dq

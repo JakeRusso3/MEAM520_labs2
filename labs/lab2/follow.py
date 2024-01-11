@@ -66,16 +66,9 @@ class JacobianDemo():
         vdes = 0x3 np array of target end effector linear velocity in the world frame
         """
 
-        x0 = np.array([0.307, 0, 0.487]) # corresponds to neutral position
-
-        ## STUDENT CODE GOES HERE
-
-        # TODO: replace these!
-        xdes = JacobianDemo.x0
-        vdes = np.array([0,0,0])
-
-        ## END STUDENT CODE
-
+        x0 = np.array([0.307, 0, 0.487]) 
+        xdes = x0 + np.array([0, ry*(sin(f*t)), rz*cos(f*t) - rz])
+        vdes = np.array([0,ry*f*(cos(f*t)),-rz*f*sin(f*t)])
         return xdes, vdes
 
     def line(t,f=1,L=.2):
@@ -91,13 +84,9 @@ class JacobianDemo():
         xdes = 0x3 np array of target end effector position in the world frame
         vdes = 0x3 np array of target end effector linear velocity in the world frame
         """
-        ## STUDENT CODE GOES HERE
-
-        # TODO: replace these!
-        xdes = JacobianDemo.x0
-        vdes = np.array([0,0,0])
-
-        ## END STUDENT CODE
+        x0 = np.array([0.307, 0, 0.487])
+        xdes = x0 + np.array([0, sin(f*t)*L, 0])
+        vdes = np.array([0, L*f*cos(f*t), 0])
 
         return xdes, vdes
 

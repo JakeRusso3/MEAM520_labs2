@@ -27,6 +27,19 @@ def IK_velocity_null(q_in, v_in, omega_in, b):
     omega_in = np.array(omega_in)
     omega_in = omega_in.reshape((3,1))
 
+    J = calcJacobian(q_in)
+    targetvmatrix = np.vstack((v_in, omega_in))
+
+    for ii in range(6):
+        if np.isnan(targetvmatrix[ii]):
+            targetvmatrix[ii] = 0
+            J[ii] = 0
+    dq = np.linalg.lstsq(J,targetvmatrix, rcond = None)[0].T
+
+    dq = dq.reshape(7,)
+    
+    return dq
+
 
     return dq + null
 

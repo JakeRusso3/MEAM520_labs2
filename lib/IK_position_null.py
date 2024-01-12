@@ -70,6 +70,11 @@ class IK:
         ## STUDENT CODE STARTS HERE
         displacement = np.zeros(3)
         axis = np.zeros(3)
+        
+        currentR = current[:3,3]
+        targetR = target[:3,3]
+        displacement = targetR - currentR
+        axis = calcAngDiff(targetR, currentR)
 
         ## END STUDENT CODE
         return displacement, axis
@@ -96,10 +101,18 @@ class IK:
         """
         
         ## STUDENT CODE STARTS HERE
-        distance = 0
-        angle = 0
+        translation_G = G[:3, 3]
+        translation_H = H[:3, 3]
 
-        ## END STUDENT CODE
+        distance = np.linalg.norm(translation_G - translation_H)
+
+        rotation_G = G[:3, :3]
+        rotation_H = H[:3, :3]
+
+        rotation_relative = np.dot(rotation_G.T, rotation_H)
+
+        trace = np.trace(rotation_relative)
+        angle = np.arccos((trace - 1) / 2)
         return distance, angle
 
     def is_valid_solution(self,q,target):

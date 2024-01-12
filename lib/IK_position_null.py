@@ -71,8 +71,8 @@ class IK:
         displacement = np.zeros(3)
         axis = np.zeros(3)
         
-        currentR = current[:3,3]
-        targetR = target[:3,3]
+        currentR = current[:3,:3]
+        targetR = target[:3,:3]
         displacement = targetR - currentR
         axis = calcAngDiff(targetR, currentR)
 

@@ -139,7 +139,7 @@ class IK:
 
         jointpositions, T0e = IK.fk.forward(q)
         distance, angle = self.distance_and_angle(T0e, target)
-        if ((distance <= self.linear_to1) and (angle <= self.angular_to1)):
+        if ((distance <= self.linear_tol) and (angle <= self.angular_tol)):
             message = "solution is within given tolerances"
             success = True
         else:

@@ -173,7 +173,7 @@ class IK:
         ## STUDENT CODE STARTS HERE
         dq = np.zeros(7)
         _, T0e = IK.fk.forward(q)
-        displacement, axis = self.displacement_and_axis(target, T0e) 
+        displacement, axis = IK.displacement_and_axis(target, T0e) 
         J = calcJacobian(q)
 
         if method == 'J_pseudo':

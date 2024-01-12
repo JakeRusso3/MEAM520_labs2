@@ -256,7 +256,7 @@ class IK:
             ## Task Prioritization
             J = calcJacobian(q)
             J_pseudo = np.linalg.pinv(J)
-            N = np.eye(J.shape[1]) - np.dot(J_pinv, J)
+            N = np.eye(J.shape[1]) - np.dot(J_pseudo, J)
             dq_null = np.dot(N, dq_center)
 
             dq = dq_ik + dq_null

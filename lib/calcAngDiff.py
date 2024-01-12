@@ -24,6 +24,6 @@ def calcAngDiff(R_des, R_curr):
     Skews = 0.5 * np.cross(R_rel, R_rel.T, axisa=0, axisb=0)
     angular_velocities = np.array([Skews[2,1], Skews[0,2], Skews[1,0]])
     
-    omega = np.dot(R_curr, a)
+    omega = np.dot(R_curr, angular_velocities)
 
     return omega

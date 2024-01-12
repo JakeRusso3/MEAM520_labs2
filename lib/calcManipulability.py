@@ -1,4 +1,5 @@
 import numpy as np
+import math
 from lib.calcJacobian import calcJacobian
 
 def calcManipulability(q_in):

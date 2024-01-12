@@ -84,8 +84,13 @@ class JacobianDemo():
         vdes = np.array([rx*fx*cos(fx*t),ry*fy*cos(fy*t),0])
 
         # TODO: replace these!
-        Rdes = np.diag([1., -1., -1.])
-        ang_vdes = 0.0 * np.array([1.0, 0.0, 0.0])
+        ang = -np.pi + (np.pi/4.0) * sin(f*t)
+        r = ang * np.array([1.0, 0.0, 0.0])
+        Rdes = rotvec_to_matrix(r)
+
+        angv = (np.pi/4.0) * sin(f*t)
+        ang_vdes = angv * np.array([1.0, 0.0, 0.0])
+
 
         return Rdes, ang_vdes, xdes, vdes
 

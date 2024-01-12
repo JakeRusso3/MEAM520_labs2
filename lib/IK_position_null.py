@@ -131,8 +131,8 @@ class IK:
         angular tolerances of the target pose, and also respects the joint
         limits.
         """
-        for ii in enumerate(q):
-            if ((q[ii] < IK.lower[ii]) or (q[ii] > IK.upper[ii])):
+        for ii, thisq in enumerate(q):
+            if ((thisq < IK.lower[ii]) or (thisq > IK.upper[ii])):
                 message = "does not respect joint limits"
                 success = False
                 return success, message

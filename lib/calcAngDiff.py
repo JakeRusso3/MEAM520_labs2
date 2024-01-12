@@ -31,6 +31,6 @@ def calcAngDiff(R_des, R_curr):
     angle = 2 * np.arcsin(np.linalg.norm(a))
 
     # Calculate the angular velocity vector (axis of rotation)
-    omega = sin(angle) * a / np.linalg.norm(a)
+    omega = np.sin(angle) * a / np.linalg.norm(a)
 
     return omega

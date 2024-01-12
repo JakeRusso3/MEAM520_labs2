@@ -174,15 +174,17 @@ class IK:
         dq = np.zeros(7)
         _, T0e = IK.fk.forward(q)
         displacement, axis = IK.displacement_and_axis(target, T0e) 
+        axis_2d = np.reshape(axis, (1, -1))
         J = calcJacobian(q)
 
         if method == 'J_pseudo':
             J_pseudo = np.linalg.pinv(J)
-            dq = np.dot(J_pseudo,np.concatenate((displacement, axis)))
+            
+            dq = np.dot(J_pseudo,np.concatenate((displacement, axis_2d)))
 
         elif method == 'J_trans':
             J_trans = J.T
-            dq = np.dot(J_trans,np.concatenate((displacement, axis)))
+            dq = np.dot(J_trans,np.concatenate((displacement, axis_2d)))
             
         return dq
 

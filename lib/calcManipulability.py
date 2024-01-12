@@ -1,5 +1,4 @@
 import numpy as np
-import math
 from lib.calcJacobian import calcJacobian
 
 def calcManipulability(q_in):
@@ -21,6 +20,6 @@ def calcManipulability(q_in):
     ## STUDENT CODE STARTS HERE for the mu index, Hint: np.linalg.svd
     mu = 0.0
     _, S, _ = np.linalg.svd(J_pos)
-    mu = sqrt(np.prod(S))
+    mu = np.sqrt(np.prod(S))
 
     return mu, M

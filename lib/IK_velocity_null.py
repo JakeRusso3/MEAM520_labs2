@@ -37,6 +37,8 @@ def IK_velocity_null(q_in, v_in, omega_in, b):
 
     Jpseudoinv = np.linalg.pinv(J)
     dq = np.dot(Jpseudoinv, targetvmatrix)
+
+    
     N = np.eye(J.shape[1]) - np.dot(Jpseudoinv, J)
     null = np.dot(N,b)
 

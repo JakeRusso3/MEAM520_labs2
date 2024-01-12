@@ -131,12 +131,21 @@ class IK:
         angular tolerances of the target pose, and also respects the joint
         limits.
         """
+        for ii in enumerate(q):
+            if ((q[ii] < IK.lower[ii]) or (q[ii] > IK.upper[ii])):
+                message = "does not respect joint limits"
+                success = False
+                return success, message
 
-        ## STUDENT CODE STARTS HERE
-        success = False
-        message = "Solution found/not found + reason"
-
-        ## END STUDENT CODE
+        jointpositions, T0e = IK.fk.forward(q)
+        distance, angle = self.distance_and_angle(T0e, target)
+        if ((distance <= self.linear_to1) and (angle <= self.angular_to1)):
+            message = "solution is within given tolerances"
+            success = True
+        else:
+            success = False
+            message = "solution is not within given tolerances"
+        
         return success, message
 
     ####################
@@ -163,8 +172,18 @@ class IK:
 
         ## STUDENT CODE STARTS HERE
         dq = np.zeros(7)
+        _, T0e = IK.fk.forward(q)
+        displacement, axis = self.displacement_and_axis(target, T0e) 
+        J = calcJacobian(q)
 
-        ## END STUDENT CODE
+        if method == 'J_pseudo':
+            J_pseudo = np.linalg.pinv(J)
+            dq = np.dot(J_pseudo,np.concatenate((displacement, axis)))
+
+        elif method == 'J_trans':
+            J_trans = J.T
+            dq = np.dot(J_trans,np.concatenate((displacement, axis)))
+            
         return dq
 
     @staticmethod
@@ -219,6 +238,7 @@ class IK:
 
         q = seed
         rollout = []
+        steps = 0
 
         ## STUDENT CODE STARTS HERE
 
@@ -234,11 +254,20 @@ class IK:
             dq_center = IK.joint_centering_task(q)
 
             ## Task Prioritization
+            J = calcJacobian(q)
+            J_pseudo = np.linalg.pinv(J)
+            N = np.eye(J.shape[1]) - np.dot(J_pinv, J)
+            dq_null = np.dot(N, dq_center)
 
-            # Check termination conditions
-            break
+            dq = dq_ik + dq_null
 
-            # update q
+            if (steps >= self.max_steps) or 
+                break
+
+            steps = steps + 1
+            newq = q + alpha * dq
+            q = newq
+            
             
 
         ## END STUDENT CODE

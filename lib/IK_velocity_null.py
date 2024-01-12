@@ -34,12 +34,11 @@ def IK_velocity_null(q_in, v_in, omega_in, b):
         if np.isnan(targetvmatrix[ii]):
             targetvmatrix[ii] = 0
             J[ii] = 0
-    dq = np.linalg.lstsq(J,targetvmatrix, rcond = None)[0].T
 
-    dq = dq.reshape(7,)
-    
-    return dq
-
+    Jpseudoinv = np.linalg.pinv(J)
+    dq = np.dot(Jpseudoinv, targetvmatrix)
+    N = np.eye(J.shape[1]) - np.dot(Jpseudoinv, J)
+    null = np.dot(N,b)
 
     return dq + null
 

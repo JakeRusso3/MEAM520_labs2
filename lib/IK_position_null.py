@@ -73,7 +73,7 @@ class IK:
         
         currentR = current[:3,:3]
         targetR = target[:3,:3]
-        displacement = targetR - currentR
+        displacement = current[:3,3] - target[:3,3]
         axis = calcAngDiff(targetR, currentR)
 
         ## END STUDENT CODE
@@ -173,18 +173,16 @@ class IK:
         ## STUDENT CODE STARTS HERE
         dq = np.zeros(7)
         _, T0e = IK.fk.forward(q)
-        displacement, axis = IK.displacement_and_axis(target, T0e) 
-        axis_2d = np.reshape(axis, (1, -1))
+        displacement, axis = IK.displacement_and_axis(target, T0e)
         J = calcJacobian(q)
 
         if method == 'J_pseudo':
             J_pseudo = np.linalg.pinv(J)
-            
-            dq = np.dot(J_pseudo,np.concatenate((displacement, axis_2d)))
+            dq = np.dot(J_pseudo,np.concatenate((displacement, axis)))
 
         elif method == 'J_trans':
             J_trans = J.T
-            dq = np.dot(J_trans,np.concatenate((displacement, axis_2d)))
+            dq = np.dot(J_trans,np.concatenate((displacement, axis)))
             
         return dq
 

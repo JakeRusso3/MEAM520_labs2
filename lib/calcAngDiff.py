@@ -19,7 +19,11 @@ def calcAngDiff(R_des, R_curr):
     the current frame to the end effector frame. The magnitude of this vector
     must be sin(angle), where angle is the angle of rotation around this axis
     """
-    omega = np.zeros(3)
-    ## STUDENT CODE STARTS HERE
+
+    R_rel = np.dot(R_curr.T, R_des)
+    Skews = 0.5 * np.cross(R_rel, R_rel.T, axisa=0, axisb=0)
+    angular_velocities = np.array([Skews[2,1], Skews[0,2], Skews[1,0]])
+    
+    omega = np.dot(R_curr, a)
 
     return omega

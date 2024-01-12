@@ -261,7 +261,9 @@ class IK:
 
             dq = dq_ik + dq_null
 
-            if (steps >= self.max_steps) or 
+            stepsize = np.linalg.norm(dq)
+
+            if (steps >= self.max_steps) or (stepsize < self.min_step_size):
                 break
 
             steps = steps + 1

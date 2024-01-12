@@ -94,7 +94,7 @@ class JacobianDemo():
 
         return Rdes, ang_vdes, xdes, vdes
 
-    def ellipse(t,f=0.5,ry=.15,rz=.10):
+    def ellipse(t,f=0.25,ry=.15,rz=.10):
         """
         Calculate the position and velocity of the figure ellipse trajector
 

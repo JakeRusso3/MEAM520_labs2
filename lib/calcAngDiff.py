@@ -23,13 +23,14 @@ def calcAngDiff(R_des, R_curr):
     R_rel = np.dot(R_curr.T, R_des)
 
     # Calculate the skew-symmetric matrix
-    S = 0.5 * (R_rel - R_rel.T)
+    Skews = 0.5 * (R_rel - R_rel.T)
 
     # Extract the axis of rotation from the skew-symmetric matrix
-    S.reshape(3,3)
-    a = np.array([S[2, 1], S[0, 2], S[1, 0]])
+    Skews.reshape(3,3)
+    a = np.array([Skews[2, 1], Skews[0, 2], Skews[1, 0]])
+    angle = 2 * np.arcsin(np.linalg.norm(a))
 
     # Calculate the angular velocity vector (axis of rotation)
-    omega = a / np.linalg.norm(a)
+    omega = sin(angle) * a / np.linalg.norm(a)
 
     return omega
